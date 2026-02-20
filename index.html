@@ -1,11 +1,728 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-  <title>Aditya C</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aditya Choudhary | Computational Chemist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --muted: #5a5a7a;
+      --accent: #c47c2b;
+      --accent2: #2b6cb0;
+      --bg: #faf9f6;
+      --card: #ffffff;
+      --border: #e8e4dc;
+      --serif: 'Lora', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+```
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 6%;
+  background: rgba(250,249,246,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+nav ul { display: flex; gap: 2.2rem; list-style: none; }
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--accent); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 7rem 6% 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.hero-inner {
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero-photo-wrap {
+  flex-shrink: 0;
+  position: relative;
+}
+.hero-photo-wrap::before {
+  content: '';
+  position: absolute;
+  width: 210px; height: 210px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.12;
+  top: 12px; left: 12px;
+}
+.hero-photo {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+  position: relative;
+  z-index: 1;
+  display: block;
+  background: #ddd;
+}
+.hero-photo-placeholder {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e8e4dc, #d4cfc6);
+  border: 3px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-text { flex: 1; min-width: 280px; }
+.hero-eyebrow {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+.hero-text h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.hero-text .role {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+  font-weight: 400;
+}
+.hero-text .bio {
+  font-size: 1rem;
+  color: #3a3a5a;
+  max-width: 560px;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+.hero-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.btn-primary {
+  background: var(--ink);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--accent2); }
+.btn-outline {
+  border: 1.5px solid var(--border);
+  color: var(--ink);
+  background: transparent;
+}
+.btn-outline:hover { border-color: var(--ink); background: var(--ink); color: #fff; }
+
+/* ── SECTIONS ── */
+section {
+  padding: 5rem 6%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+  line-height: 1.2;
+}
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 6%;
+}
+
+/* ── ABOUT ── */
+#about .about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+#about p {
+  color: #3a3a5a;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.skills-box h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+.skill-tag {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.25rem;
+}
+
+/* ── RESEARCH ── */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.research-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.8rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.research-card:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+  transform: translateY(-2px);
+}
+.research-icon {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.research-card h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+}
+.research-card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── EXPERIENCE ── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px; bottom: 6px;
+  width: 1px;
+  background: var(--border);
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.35rem; top: 6px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.tl-meta {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+}
+.tl-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.tl-org {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.tl-desc {
+  font-size: 0.925rem;
+  color: #4a4a6a;
+  line-height: 1.7;
+}
+
+/* ── PUBLICATIONS ── */
+.pub-list { display: flex; flex-direction: column; gap: 0; }
+.pub-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+.pub-item:first-child { border-top: 1px solid var(--border); }
+.pub-year {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding-top: 0.15rem;
+  min-width: 40px;
+}
+.pub-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+.pub-authors {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+.pub-authors strong { color: var(--ink); }
+.pub-venue {
+  font-size: 0.875rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.pub-links a {
+  font-size: 0.8rem;
+  color: var(--accent2);
+  text-decoration: none;
+  margin-right: 1rem;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.pub-links a:hover { border-color: var(--accent2); }
+.scholar-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.scholar-link:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--ink);
+  max-width: 100%;
+  padding: 5rem 6%;
+  color: #fff;
+}
+#contact .inner { max-width: 1100px; margin: 0 auto; }
+#contact .section-label { color: var(--accent); }
+#contact .section-title { color: #fff; margin-bottom: 1rem; }
+#contact p { color: rgba(255,255,255,0.7); max-width: 500px; margin-bottom: 2.5rem; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.contact-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+.contact-item-icon {
+  font-size: 1.2rem;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+.contact-item-text .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.2rem;
+}
+.contact-item-text a, .contact-item-text span {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.contact-item-text a:hover { color: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  background: #111122;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav ul { gap: 1.2rem; }
+  #about .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-inner { gap: 2.5rem; }
+}
+@media (max-width: 540px) {
+  nav ul { display: none; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-text > * {
+  animation: fadeUp 0.6s ease both;
+}
+.hero-text .hero-eyebrow { animation-delay: 0.1s; }
+.hero-text h1             { animation-delay: 0.2s; }
+.hero-text .role          { animation-delay: 0.3s; }
+.hero-text .bio           { animation-delay: 0.4s; }
+.hero-text .hero-links    { animation-delay: 0.5s; }
+```
+
+  </style>
 </head>
 <body>
-  <h1>Hello! I'm Aditya.</h1>
-  <p>My personal webpage is coming soon.</p>
+
+  <!-- NAV -->
+
+  <nav>
+    <div class="nav-logo">Aditya Choudhary</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <div id="hero">
+    <div class="hero-inner">
+      <div class="hero-photo-wrap">
+        <!-- Replace the emoji below with your actual photo: 
+             1. Upload photo.jpg to your repo's assets/ folder
+             2. Replace the div below with: <img src="assets/photo.jpg" alt="Aditya Choudhary" class="hero-photo"> -->
+        <div class="hero-photo-placeholder">👤</div>
+      </div>
+      <div class="hero-text">
+        <p class="hero-eyebrow">Postdoctoral Researcher</p>
+        <h1>Aditya Choudhary</h1>
+        <p class="role">Sandia National Laboratories &nbsp;·&nbsp; University of Utah &nbsp;·&nbsp; IIT Kanpur</p>
+        <p class="bio">
+          Computational chemist with 6+ years of experience in molecular dynamics simulations, free energy calculations, and density functional theory. I work at the intersection of energy, environmental science, and machine learning — from designing better polymer electrolytes for batteries to detecting PFAS contaminants and modeling underground hydrogen storage.
+        </p>
+        <div class="hero-links">
+          <a href="#contact" class="btn btn-primary">Get in Touch</a>
+          <a href="https://scholar.google.com/citations?user=u8SzARsAAAAJ&hl=en" target="_blank" class="btn btn-outline">Google Scholar</a>
+          <a href="https://www.linkedin.com/in/adityachoudhary15" target="_blank" class="btn btn-outline">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ABOUT -->
+
+  <section id="about">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I am a Postdoctoral Researcher at <strong>Sandia National Laboratories</strong>, affiliated with the University of Utah and a proud alumnus of IIT Kanpur. My work sits at the crossroads of computational chemistry, materials science, and machine learning.
+        </p>
+        <p>
+          With over 6 years of experience, I specialize in <strong>molecular dynamics (MD) simulations</strong>, free energy calculations, and density functional theory (DFT). Throughout my career I have been deeply immersed in energy and environmental sciences — contributing to the development of efficient polymer electrolytes for batteries and innovative solutions for water pollutant removal, with a particular focus on PFAS.
+        </p>
+        <p>
+          I have extensively collaborated with experimentalists while working on a wide range of materials, from surfactants and polymers to earth minerals. More recently, I have ventured into <strong>machine learning</strong>, developing models to accurately predict the physical and chemical properties of molecules, and utilizing generative models such as constrained graph variational autoencoders to design novel molecules with enhanced efficiency.
+        </p>
+        <p>
+          You can find my full list of publications on my 
+          <a href="https://scholar.google.com/citations?user=u8SzARsAAAAJ&hl=en" target="_blank" style="color:var(--accent2); text-decoration:none; border-bottom: 1px solid var(--accent2);">Google Scholar profile</a> 
+          and connect with me on 
+          <a href="https://www.linkedin.com/in/adityachoudhary15" target="_blank" style="color:var(--accent2); text-decoration:none; border-bottom: 1px solid var(--accent2);">LinkedIn</a>.
+        </p>
+      </div>
+      <div class="skills-box">
+        <h3>Skills &amp; Expertise</h3>
+        <div>
+          <span class="skill-tag">Molecular Dynamics</span>
+          <span class="skill-tag">DFT</span>
+          <span class="skill-tag">Free Energy Calculations</span>
+          <span class="skill-tag">Metadynamics</span>
+          <span class="skill-tag">Machine Learning</span>
+          <span class="skill-tag">Graph Neural Networks</span>
+          <span class="skill-tag">Polymer Electrolytes</span>
+          <span class="skill-tag">PFAS</span>
+          <span class="skill-tag">Geochemistry</span>
+          <span class="skill-tag">LAMMPS</span>
+          <span class="skill-tag">GROMACS</span>
+          <span class="skill-tag">Python</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- RESEARCH -->
+
+  <section id="research">
+    <p class="section-label">What I Work On</p>
+    <h2 class="section-title">Research Interests</h2>
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="research-icon">🔋</div>
+        <h3>Energy Storage &amp; Polymer Electrolytes</h3>
+        <p>Designing next-generation solid polymer electrolytes for Li-ion batteries using atomistic simulations to understand ion transport mechanisms and improve ionic conductivity.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-icon">💧</div>
+        <h3>Environmental Science &amp; PFAS</h3>
+        <p>Developing computational models to detect and understand per- and polyfluoroalkyl substances (PFAS) in water systems, including nanopore-based single-molecule sensing approaches.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-icon">🌍</div>
+        <h3>Subsurface &amp; Geological Storage</h3>
+        <p>Studying underground hydrogen and CO₂ storage in depleted reservoirs using molecular simulations to understand gas–mineral interactions and assess storage viability.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-icon">🤖</div>
+        <h3>Machine Learning for Chemistry</h3>
+        <p>Building ML models to predict molecular properties and using generative models (constrained graph VAE) to design novel molecules with targeted chemical and physical characteristics.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-icon">🔬</div>
+        <h3>2D Materials &amp; Heterostructures</h3>
+        <p>Investigating interactions in misaligned layered materials to understand superlubricity, enhanced catalytic activities, and exotic quantum phases arising from stacking sequence manipulation.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-icon">⚗️</div>
+        <h3>Surfactants &amp; Self-Assembly</h3>
+        <p>Exploring self-assembly phenomena in surfactant systems at mineral interfaces, with applications in enhanced oil recovery and environmental remediation.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- EXPERIENCE -->
+
+  <section id="experience">
+    <p class="section-label">Career</p>
+    <h2 class="section-title">Experience &amp; Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <p class="tl-meta">2022 – Present</p>
+        <p class="tl-title">Postdoctoral Researcher</p>
+        <p class="tl-org">Sandia National Laboratories, Albuquerque, NM</p>
+        <p class="tl-desc">Conducting molecular simulations to study underground hydrogen storage, PFAS detection, and gas clustering in nanopores. Collaborating with experimentalists at multiple universities including University of Utah, University at Buffalo, and University of Massachusetts Amherst.</p>
+      </div>
+      <div class="timeline-item">
+        <p class="tl-meta">Ph.D.</p>
+        <p class="tl-title">Doctor of Philosophy — Computational Chemistry</p>
+        <p class="tl-org">University of Utah</p>
+        <p class="tl-desc">Focused on polymer electrolytes for Li-ion batteries, free energy calculations, and molecular dynamics simulations. Developed expertise in DFT and metadynamics.</p>
+      </div>
+      <div class="timeline-item">
+        <p class="tl-meta">B.Tech / M.Tech</p>
+        <p class="tl-title">Undergraduate / Graduate Degree</p>
+        <p class="tl-org">Indian Institute of Technology (IIT) Kanpur</p>
+        <p class="tl-desc">Foundational training in chemistry and materials science at one of India's premier technical institutions.</p>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem; font-size:0.875rem; color:var(--muted);">
+      ✏️ <em>Edit this page to add more details to your experience — dates, descriptions, etc.</em>
+    </p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PUBLICATIONS -->
+
+  <section id="publications">
+    <p class="section-label">Research Output</p>
+    <h2 class="section-title">Selected Publications</h2>
+    <div class="pub-list">
+
+```
+  <div class="pub-item">
+    <span class="pub-year">2024</span>
+    <div>
+      <p class="pub-title">Confinement-induced clustering of H₂ and CO₂ gas molecules in hydrated nanopores</p>
+      <p class="pub-authors"><strong>A. Choudhary</strong> and T. A. Ho</p>
+      <p class="pub-venue">Physical Chemistry Chemical Physics, 2024, 26, 10506</p>
+      <div class="pub-links">
+        <a href="https://pubs.rsc.org/en/content/articlelanding/2024/cp/d3cp06024a" target="_blank">Paper →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <span class="pub-year">2024</span>
+    <div>
+      <p class="pub-title">Nuclear magnetic resonance and molecular simulation study of H₂ and CH₄ adsorption onto shale and sandstone for hydrogen geological storage</p>
+      <p class="pub-authors"><strong>A. Choudhary</strong> et al.</p>
+      <p class="pub-venue">International Journal of Hydrogen Energy, 2024</p>
+      <div class="pub-links">
+        <a href="https://scholar.google.com/citations?user=u8SzARsAAAAJ&hl=en" target="_blank">Scholar →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <span class="pub-year">2023</span>
+    <div>
+      <p class="pub-title">Single-molecule profiling of per- and polyfluoroalkyl substances by cyclodextrin mediated host-guest interactions within a biological nanopore</p>
+      <p class="pub-authors"><strong>A. Choudhary</strong> et al.</p>
+      <p class="pub-venue">Journal (see Google Scholar for full details)</p>
+      <div class="pub-links">
+        <a href="https://scholar.google.com/citations?user=u8SzARsAAAAJ&hl=en" target="_blank">Scholar →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <span class="pub-year">2023</span>
+    <div>
+      <p class="pub-title">Interactions in misaligned layered materials</p>
+      <p class="pub-authors"><strong>A. Choudhary</strong> et al.</p>
+      <p class="pub-venue">Trends in Chemistry, 2023</p>
+      <div class="pub-links">
+        <a href="https://scholar.google.com/citations?user=u8SzARsAAAAJ&hl=en" target="_blank">Scholar →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <span class="pub-year">2022</span>
+    <div>
+      <p class="pub-title">Influence of Functional Groups on Li-Ion Transport in Dual-Ion vs Single-Ion Conducting Comb-Branched Polymer Electrolytes</p>
+      <p class="pub-authors"><strong>A. Choudhary</strong>, D. Bedrov, D. Dong et al.</p>
+      <p class="pub-venue">Journal of Physical Chemistry (see Google Scholar for full details)</p>
+      <div class="pub-links">
+        <a href="https://scholar.google.com/citations?user=u8SzARsAAAAJ&hl=en" target="_blank">Scholar →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<a href="https://scholar.google.com/citations?user=u8SzARsAAAAJ&hl=en" target="_blank" class="scholar-link">
+  📚 &nbsp; View all 20 publications on Google Scholar
+</a>
+```
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+    <div class="inner">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Contact</h2>
+      <p>I'm open to collaborations, research discussions, and new opportunities. Feel free to reach out!</p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div class="contact-item-text">
+            <p class="label">Email</p>
+            <a href="mailto:adityac@sandia.gov">adityac@sandia.gov</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">
+            <p class="label">Location</p>
+            <span>Albuquerque, NM, USA</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🎓</div>
+          <div class="contact-item-text">
+            <p class="label">Google Scholar</p>
+            <a href="https://scholar.google.com/citations?user=u8SzARsAAAAJ&hl=en" target="_blank">View Profile</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">💼</div>
+          <div class="contact-item-text">
+            <p class="label">LinkedIn</p>
+            <a href="https://www.linkedin.com/in/adityachoudhary15" target="_blank">adityachoudhary15</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Aditya Choudhary · Sandia National Laboratories</p>
+  </footer>
+
 </body>
 </html>
 
